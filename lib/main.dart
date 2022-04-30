@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_play/pages/error.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_play/pages/launchpad.dart';
+import 'package:flutter_play/pages/todo.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
       title: 'Flutter Play',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
-      home: const Launchpad(),
     );
   }
+
+  final GoRouter _router = GoRouter(
+    urlPathStrategy: UrlPathStrategy.path,
+    routes: [
+      GoRoute(
+        path: '/',
+        name: 'launchpad',
+        builder: (context, state) => const LaunchpadPage(),
+      ),
+      GoRoute(
+        path: '/todo',
+        name: 'todo',
+        builder: (context, state) => const TodoPage(),
+      ),
+    ],
+    errorBuilder: (context, state) => ErrorPage(state.error!),
+  );
 }

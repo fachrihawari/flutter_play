@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Page {
   final String name;
@@ -12,34 +13,17 @@ class Page {
   });
 }
 
-class Launchpad extends StatelessWidget {
-  const Launchpad({Key? key}) : super(key: key);
+class LaunchpadPage extends StatelessWidget {
+  const LaunchpadPage({Key? key}) : super(key: key);
 
   final List<Page> pages = const [
-    Page(name: "Todo", page: "todo", isAvailable: false),
+    Page(name: "Todo", page: "todo", isAvailable: true),
     Page(name: "Calculator", page: "calculator", isAvailable: false),
     Page(name: "Tic Tac Toe", page: "tictactoe", isAvailable: false),
   ];
 
   void _handleItemTap(BuildContext context, Page item) {
-    if (item.isAvailable) {
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: Text(item.name),
-          content: const Text("Coming soon!"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
+    context.pushNamed(item.page);
   }
 
   @override
@@ -55,8 +39,10 @@ class Launchpad extends StatelessWidget {
           final item = pages.elementAt(index);
 
           return ListTile(
+            enabled: item.isAvailable,
             onTap: () => _handleItemTap(context, item),
             title: Text(item.name),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded),
           );
         },
       ),
