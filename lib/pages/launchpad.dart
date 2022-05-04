@@ -16,14 +16,29 @@ class Page {
 class LaunchpadPage extends StatelessWidget {
   const LaunchpadPage({Key? key}) : super(key: key);
 
-  final List<Page> pages = const [
+  final List<Page> _pages = const [
     Page(name: "Todo", page: "todo", isAvailable: true),
     Page(name: "Calculator", page: "calculator", isAvailable: false),
     Page(name: "Tic Tac Toe", page: "tictactoe", isAvailable: false),
   ];
 
-  void _handleItemTap(BuildContext context, Page item) {
+  void _handleTap(BuildContext context, Page item) {
     context.pushNamed(item.page);
+  }
+
+  Widget _buildItem(BuildContext context, int index) {
+    final item = _pages.elementAt(index);
+
+    return ListTile(
+      enabled: item.isAvailable,
+      onTap: () => _handleTap(context, item),
+      title: Text(item.name),
+      trailing: const Icon(Icons.arrow_forward_ios_rounded),
+    );
+  }
+
+  Widget _buildSeparator(BuildContext _, int __) {
+    return const Divider(height: 0);
   }
 
   @override
@@ -33,18 +48,9 @@ class LaunchpadPage extends StatelessWidget {
         title: const Text("Flutter Play"),
       ),
       body: ListView.separated(
-        itemCount: pages.length,
-        separatorBuilder: (context, index) => const Divider(height: 0),
-        itemBuilder: (context, index) {
-          final item = pages.elementAt(index);
-
-          return ListTile(
-            enabled: item.isAvailable,
-            onTap: () => _handleItemTap(context, item),
-            title: Text(item.name),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-          );
-        },
+        itemCount: _pages.length,
+        separatorBuilder: _buildSeparator,
+        itemBuilder: _buildItem,
       ),
     );
   }
