@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/todo',
         name: 'todo',
-        builder: (context, state) => const TodoPage(),
+        builder: (context, state) => TodoPage(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(state.error!),
