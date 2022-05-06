@@ -25,6 +25,12 @@ class _TodoPageState extends State<TodoPage> {
     });
   }
 
+  handleRemove(Todo todo) {
+    setState(() {
+      _todos.remove(todo);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +40,11 @@ class _TodoPageState extends State<TodoPage> {
       body: Column(
         children: [
           TodoForm(onSubmit: handleAddNewTodo),
-          TodoList(todos: _todos, onComplete: handleToggleComplete)
+          TodoList(
+            todos: _todos,
+            onComplete: handleToggleComplete,
+            onRemove: handleRemove,
+          )
         ],
       ),
     );
