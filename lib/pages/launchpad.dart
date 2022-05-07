@@ -26,6 +26,17 @@ class LaunchpadPage extends StatelessWidget {
     context.pushNamed(item.page);
   }
 
+  Widget _buildItemTrailing(Page item) {
+    return item.isAvailable
+        ? const Icon(Icons.arrow_forward_ios_rounded)
+        : const Chip(
+            label: Text(
+              "Coming soon!",
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          );
+  }
+
   Widget _buildItem(BuildContext context, int index) {
     final item = _pages.elementAt(index);
 
@@ -33,7 +44,7 @@ class LaunchpadPage extends StatelessWidget {
       enabled: item.isAvailable,
       onTap: () => _handleTap(context, item),
       title: Text(item.name),
-      trailing: const Icon(Icons.arrow_forward_ios_rounded),
+      trailing: _buildItemTrailing(item),
     );
   }
 
