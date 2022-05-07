@@ -22,9 +22,20 @@ class TodoList extends StatelessWidget {
     final item = todos.elementAt(index);
 
     return Dismissible(
-      key: Key("index-$index"),
+      key: Key(item.id),
+      direction: DismissDirection.endToStart,
       onDismissed: (_) => onRemove(item),
-      background: Container(color: Colors.red),
+      background: Container(
+        color: Colors.red,
+        alignment: AlignmentDirectional.centerEnd,
+        child: const Padding(
+          padding: EdgeInsets.only(right: 16),
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+        ),
+      ),
       child: ListTile(
         title: Text(
           item.title,

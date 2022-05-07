@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_play/widgets/todo/todo_model.dart';
+import 'package:uuid/uuid.dart';
 
 class TodoForm extends StatefulWidget {
   const TodoForm({Key? key, required this.onSubmit}) : super(key: key);
@@ -18,7 +19,11 @@ class _TodoFormState extends State<TodoForm> {
     bool validated = _formKey.currentState?.validate() ?? false;
 
     if (validated) {
-      widget.onSubmit(Todo(title: value, isCompleted: false));
+      widget.onSubmit(Todo(
+        id: const Uuid().v4(),
+        title: value,
+        isCompleted: false,
+      ));
       _formKey.currentState?.reset();
     }
   }
@@ -37,22 +42,20 @@ class _TodoFormState extends State<TodoForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Form(
-        key: _formKey,
-        child: TextFormField(
-          controller: todoInputController,
-          onFieldSubmitted: _handleSubmit,
-          decoration: InputDecoration(
-            hintText: 'What needs to be done?',
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.send),
-              onPressed: () => _handleSubmit(todoInputController.text),
-            ),
+    return Form(
+      key: _formKey,
+      child: TextFormField(
+        controller: todoInputController,
+        onFieldSubmitted: _handleSubmit,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
+          hintText: 'What needs to be done?',
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.send),
+            onPressed: () => _handleSubmit(todoInputController.text),
           ),
-          validator: _handleValidation,
         ),
+        validator: _handleValidation,
       ),
     );
   }
