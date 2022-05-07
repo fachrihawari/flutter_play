@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
   }
 
   final GoRouter _router = GoRouter(
-    urlPathStrategy: UrlPathStrategy.path,
     routes: [
       GoRoute(
         path: '/',
