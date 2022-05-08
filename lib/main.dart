@@ -3,6 +3,7 @@ import 'package:flutter_play/pages/error.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_play/pages/launchpad.dart';
 import 'package:flutter_play/pages/todo.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
       title: 'Flutter Play',
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+      ),
     );
   }
 
