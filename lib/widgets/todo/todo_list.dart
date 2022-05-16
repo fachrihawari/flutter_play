@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_play/widgets/todo/todo_item.dart';
 import 'package:flutter_play/widgets/todo/todo_model.dart';
-
-const _todoCompleteStyle = TextStyle(
-  decoration: TextDecoration.lineThrough,
-  fontStyle: FontStyle.italic,
-);
 
 class TodoList extends StatelessWidget {
   const TodoList({
@@ -19,34 +15,9 @@ class TodoList extends StatelessWidget {
   final Function(Todo) onRemove;
 
   Widget _buildItem(BuildContext context, int index) {
-    final item = todos.elementAt(index);
+    final todo = todos.elementAt(index);
 
-    return Dismissible(
-      key: Key(item.id),
-      direction: DismissDirection.endToStart,
-      onDismissed: (_) => onRemove(item),
-      background: Container(
-        color: Colors.red,
-        alignment: AlignmentDirectional.centerEnd,
-        child: const Padding(
-          padding: EdgeInsets.only(right: 16),
-          child: Icon(
-            Icons.delete,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      child: ListTile(
-        title: Text(
-          item.title,
-          style: item.isCompleted ? _todoCompleteStyle : null,
-        ),
-        onTap: () => onComplete(item),
-        trailing: item.isCompleted
-            ? const Icon(Icons.check_circle, color: Colors.green)
-            : null,
-      ),
-    );
+    return TodoItem(todo: todo, onRemove: onRemove, onComplete: onComplete);
   }
 
   Widget _buildSeparator(BuildContext _, int __) {

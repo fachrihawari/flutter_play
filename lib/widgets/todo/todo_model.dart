@@ -11,11 +11,11 @@ class Todo {
     required this.isCompleted,
   });
 
-  factory Todo.fromJson(Map<String, dynamic> jsonData) {
+  factory Todo.fromMap(Map<String, dynamic> todo) {
     return Todo(
-      id: jsonData['id'],
-      title: jsonData['title'],
-      isCompleted: jsonData['isCompleted'],
+      id: todo['id'],
+      title: todo['title'],
+      isCompleted: todo['isCompleted'],
     );
   }
 
@@ -35,7 +35,7 @@ class Todo {
 
   static List<Todo> decode(String todos) {
     return (json.decode(todos) as List<dynamic>)
-        .map<Todo>((item) => Todo.fromJson(item))
+        .map<Todo>((item) => Todo.fromMap(item))
         .toList();
   }
 }
