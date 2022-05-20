@@ -1,4 +1,4 @@
-package com.example.flutter_play
+package dev.hawari.flutter_play
 
 import io.flutter.embedding.android.FlutterActivity
 
