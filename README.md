@@ -1,6 +1,6 @@
 # flutter_play
 
-A new Flutter project.
+My Flutter Playground
 
 ## Getting Started
 
