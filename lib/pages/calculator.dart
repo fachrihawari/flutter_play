@@ -24,34 +24,16 @@ class _CalculatorPageState extends State<CalculatorPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 CalculatorButton(
-                  child: Text("AC"),
+                  text: "AC",
                 ),
                 CalculatorButton(
-                  child: Text("+/-"),
+                  text: "+/-",
                 ),
                 CalculatorButton(
-                  child: Text("%"),
+                  text: "%",
                 ),
                 CalculatorButton(
-                  child: Text("÷"),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                CalculatorButton(
-                  child: Text("7"),
-                ),
-                CalculatorButton(
-                  child: Text("8"),
-                ),
-                CalculatorButton(
-                  child: Text("9"),
-                ),
-                CalculatorButton(
-                  child: Text("×"),
+                  text: "÷",
                 ),
               ],
             ),
@@ -60,34 +42,16 @@ class _CalculatorPageState extends State<CalculatorPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 CalculatorButton(
-                  child: Text("4"),
+                  text: "7",
                 ),
                 CalculatorButton(
-                  child: Text("5"),
+                  text: "8",
                 ),
                 CalculatorButton(
-                  child: Text("6"),
+                  text: "9",
                 ),
                 CalculatorButton(
-                  child: Text("-"),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                CalculatorButton(
-                  child: Text("1"),
-                ),
-                CalculatorButton(
-                  child: Text("2"),
-                ),
-                CalculatorButton(
-                  child: Text("3"),
-                ),
-                CalculatorButton(
-                  child: Text("+"),
+                  text: "×",
                 ),
               ],
             ),
@@ -96,16 +60,52 @@ class _CalculatorPageState extends State<CalculatorPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 CalculatorButton(
-                  child: Text("00"),
+                  text: "4",
                 ),
                 CalculatorButton(
-                  child: Text("0"),
+                  text: "5",
                 ),
                 CalculatorButton(
-                  child: Text("."),
+                  text: "6",
                 ),
                 CalculatorButton(
-                  child: Text("="),
+                  text: "-",
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                CalculatorButton(
+                  text: "1",
+                ),
+                CalculatorButton(
+                  text: "2",
+                ),
+                CalculatorButton(
+                  text: "3",
+                ),
+                CalculatorButton(
+                  text: "+",
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                CalculatorButton(
+                  text: "00",
+                ),
+                CalculatorButton(
+                  text: "0",
+                ),
+                CalculatorButton(
+                  text: ".",
+                ),
+                CalculatorButton(
+                  text: "=",
                 ),
               ],
             ),
