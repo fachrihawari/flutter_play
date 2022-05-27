@@ -12,19 +12,6 @@ class CalculatorButton extends StatefulWidget {
 class _CalculatorButtonState extends State<CalculatorButton> {
   bool isPressed = false;
 
-  handlePointerDown(_) {
-    setState(() {
-      isPressed = true;
-    });
-  }
-
-  handlePointerUp(_) async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    setState(() {
-      isPressed = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     double buttonSize = (MediaQuery.of(context).size.width - 80) / 4;
@@ -34,10 +21,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
       onPointerDown: handlePointerDown,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        child: Center(
-          child:
-              Text(widget.text, style: Theme.of(context).textTheme.headline4),
-        ),
+        child: Center(child: _text(context)),
         width: buttonSize,
         height: buttonSize,
         decoration: _decoration,
@@ -45,28 +29,43 @@ class _CalculatorButtonState extends State<CalculatorButton> {
     );
   }
 
+  Text _text(BuildContext context) {
+    return Text(widget.text, style: Theme.of(context).textTheme.headline5);
+  }
+
+  // Box shadow to give Neumorphism effect
   BoxDecoration get _decoration {
+    const distance = Offset(4, 4);
+    const blurRadius = 8.0;
+    var bottomShadow = BoxShadow(
+      color: Colors.grey.shade300,
+      offset: distance,
+      blurRadius: blurRadius,
+    );
+    var topShadow = BoxShadow(
+      color: Colors.white,
+      offset: -distance,
+      blurRadius: blurRadius,
+    );
+
     return BoxDecoration(
       color: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(12),
-      boxShadow: !isPressed
-          ? [
-              // bottom shadow
-              BoxShadow(
-                color: Colors.grey.shade300,
-                offset: const Offset(4, 4),
-                blurRadius: 8,
-                spreadRadius: 0,
-              ),
-              // top shadow
-              const BoxShadow(
-                color: Colors.white,
-                offset: Offset(-4, -4),
-                blurRadius: 8,
-                spreadRadius: 0,
-              )
-            ]
-          : null,
+      boxShadow: !isPressed ? [bottomShadow, topShadow] : null,
     );
+  }
+
+  void handlePointerUp(PointerUpEvent _) async {
+    await Future.delayed(const Duration(milliseconds: 300));
+
+    setState(() {
+      isPressed = false;
+    });
+  }
+
+  void handlePointerDown(PointerDownEvent _) {
+    setState(() {
+      isPressed = true;
+    });
   }
 }
