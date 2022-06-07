@@ -17,20 +17,21 @@ class CalculatorKeyboard extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        for (var buttons in buttonGroups) ...[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              for (var button in buttons)
-                CalculatorButton(
-                  text: button,
-                ),
-            ],
-          ),
-          if (buttonGroups.indexOf(buttons) < buttonGroups.length - 1)
-            const SizedBox(height: 16),
-        ],
+        for (var buttons in buttonGroups) ..._buildRow(buttons),
       ],
     );
+  }
+
+  List<Widget> _buildRow(List<String> buttons) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          for (var button in buttons) CalculatorButton(text: button),
+        ],
+      ),
+      if (buttonGroups.indexOf(buttons) < buttonGroups.length - 1)
+        const SizedBox(height: 16)
+    ];
   }
 }
