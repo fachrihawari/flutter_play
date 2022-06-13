@@ -64,6 +64,13 @@ class _CalculatorButtonState extends State<CalculatorButton> {
   }
 
   void handlePointerDown(PointerDownEvent _) {
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Button ${widget.text} pressed!"),
+      ),
+    );
+
     setState(() {
       isPressed = true;
     });

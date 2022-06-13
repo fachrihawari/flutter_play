@@ -14,7 +14,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Calculator App"),
+        title: const Text("Neumorphism Calculator"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
