@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_play/widgets/calculator/calculator_button.dart';
 
@@ -14,11 +16,16 @@ class CalculatorKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        for (var buttons in buttonGroups) ..._buildRow(buttons),
-      ],
+    double width = min(MediaQuery.of(context).size.width, 464);
+
+    return SizedBox(
+      width: width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (var buttons in buttonGroups) ..._buildRow(buttons),
+        ],
+      ),
     );
   }
 

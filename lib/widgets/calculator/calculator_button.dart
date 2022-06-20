@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CalculatorButton extends StatefulWidget {
@@ -12,9 +14,11 @@ class CalculatorButton extends StatefulWidget {
 class _CalculatorButtonState extends State<CalculatorButton> {
   bool isPressed = false;
 
+  double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+
   @override
   Widget build(BuildContext context) {
-    double buttonSize = (MediaQuery.of(context).size.width - 80) / 4;
+    double buttonSize = min((screenWidth(context) - 80) / 4, 96);
 
     return Listener(
       onPointerUp: handlePointerUp,
@@ -30,7 +34,12 @@ class _CalculatorButtonState extends State<CalculatorButton> {
   }
 
   Text _text(BuildContext context) {
-    return Text(widget.text, style: Theme.of(context).textTheme.headline5);
+    var textTheme = Theme.of(context).textTheme;
+    var style = screenWidth(context) > 320
+        ? textTheme.headlineSmall
+        : textTheme.subtitle1;
+
+    return Text(widget.text, style: style);
   }
 
   // Box shadow to give Neumorphism effect
