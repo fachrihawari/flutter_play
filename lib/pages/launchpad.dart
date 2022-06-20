@@ -18,7 +18,7 @@ class LaunchpadPage extends StatelessWidget {
 
   final List<Page> _pages = const [
     Page(name: "Todo", page: "todo", isAvailable: true),
-    Page(name: "Calculator", page: "calculator", isAvailable: false),
+    Page(name: "Calculator", page: "calculator", isAvailable: true),
     Page(name: "Tic Tac Toe", page: "tictactoe", isAvailable: false),
   ];
 

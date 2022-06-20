@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_play/pages/error.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_play/pages/calculator.dart';
+import 'package:flutter_play/pages/error.dart';
 import 'package:flutter_play/pages/launchpad.dart';
 import 'package:flutter_play/pages/todo.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,6 +36,11 @@ class MyApp extends StatelessWidget {
         path: '/todo',
         name: 'todo',
         builder: (context, state) => const TodoPage(),
+      ),
+      GoRoute(
+        path: '/calculator',
+        name: 'calculator',
+        builder: (context, state) => const CalculatorPage(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(state.error!),
